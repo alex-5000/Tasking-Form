@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire de demande design</title>
+  <style>
+    :root {
+      font-family: Arial, sans-serif;
+      color: #1f2937;
+      background: #f8fafc;
+    }
+    body {
+      margin: 0;
+      padding: 1rem;
+      background: #f8fafc;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 1rem 1.2rem 1.5rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    h1, h2 {
+      margin-top: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .limit-box {
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .grid {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    label {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    input, select, textarea, button {
+      font: inherit;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.5rem 0.6rem;
+    }
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    .section {
+      margin-top: 1rem;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 0.8rem;
+    }
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    button {
+      cursor: pointer;
+      background: #0f766e;
+      color: #ffffff;
+      border-color: #0f766e;
+    }
+    button.secondary {
+      background: #0b4f9c;
+      border-color: #0b4f9c;
+    }
+    button.ghost {
+      background: #ffffff;
+      color: #1f2937;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .hint {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .status {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      color: #0f172a;
+      white-space: pre-line;
+    }
+    .required::after {
+      content: " *";
+      color: #b91c1c;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Formulaire de demande design</h1>
+
+    <section class="limit-box" aria-label="Limites">
+      <h2>Limites</h2>
+      <p>Le lien <code>mailto:</code> ne peut pas joindre automatiquement un PDF ou des images. Vous devez joindre les fichiers manuellement dans votre client courriel.</p>
+    </section>
+
+    <form id="requestForm" novalidate>
+      <section class="section">
+        <h2>Informations demandeur</h2>
+        <div class="grid">
+          <div class="field">
+            <label class="required" for="requesterName">Nom du demandeur</label>
+            <input id="requesterName" name="requesterName" required />
+          </div>
+          <div class="field">
+            <label class="required" for="requesterEmail">Courriel</label>
+            <input id="requesterEmail" name="requesterEmail" type="email" required />
+          </div>
+          <div class="field">
+            <label class="required" for="department">Direction</label>
+            <input id="department" name="department" required />
+          </div>
+          <div class="field">
+            <label for="phone">Téléphone</label>
+            <input id="phone" name="phone" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Détails de la demande</h2>
+        <div class="grid">
+          <div class="field">
+            <label class="required" for="productType">Type de produit</label>
+            <select id="productType" name="productType" required>
+              <option value="">Sélectionner...</option>
+              <option>Affiche</option>
+              <option>Bannière web</option>
+              <option>Infographie</option>
+              <option>Présentation</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="required" for="targetAudience">Public cible</label>
+            <input id="targetAudience" name="targetAudience" required />
+          </div>
+          <div class="field">
+            <label class="required" for="languages">Langues</label>
+            <input id="languages" name="languages" placeholder="Français / Anglais" required />
+          </div>
+          <div class="field">
+            <label for="dimensions">Dimensions</label>
+            <input id="dimensions" name="dimensions" placeholder="ex. 1080x1080" />
+          </div>
+          <div class="field">
+            <label for="dateNeeded">Date de livraison souhaitée</label>
+            <input id="dateNeeded" name="dateNeeded" type="date" />
+          </div>
+          <div class="field">
+            <label for="finalContent">Contenu final prêt?</label>
+            <select id="finalContent" name="finalContent">
+              <option>Oui</option>
+              <option>Non</option>
+              <option>Partiel</option>
+            </select>
+          </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label class="required" for="objective">Objectif</label>
+            <textarea id="objective" name="objective" required></textarea>
+          </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="notes">Notes additionnelles</label>
+            <textarea id="notes" name="notes"></textarea>
+          </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="exampleLinks">Liens d'exemples (un par ligne)</label>
+            <textarea id="exampleLinks" name="exampleLinks" placeholder="https://...\nhttps://..."></textarea>
+          </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="images">Images de référence</label>
+            <input id="images" name="images" type="file" multiple accept="image/*" />
+          </div>
+          <div class="field">
+            <label for="ccEmail">Cc (optionnel)</label>
+            <input id="ccEmail" name="ccEmail" type="email" placeholder="cc@organisation.gc.ca" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="actions">
+          <button id="downloadPdfBtn" type="button" class="ghost">Télécharger le PDF</button>
+          <button id="openEmailBtn" type="button" class="secondary">Ouvrir courriel</button>
+          <button id="copyEmailBtn" type="button" class="ghost">Copier le texte du courriel</button>
+          <span class="hint">Astuce: joignez le PDF à ce courriel.</span>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+    </form>
+  </main>
+
+  <script>
+    const CONFIG = {
+      defaultTo: 'design@organisation.gc.ca',
+      defaultCc: '',
+      maxBodyLength: 6000
+    };
+
+    const form = document.getElementById('requestForm');
+    const openEmailBtn = document.getElementById('openEmailBtn');
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    const statusEl = document.getElementById('status');
+
+    function formatDateTime(now) {
+      const pad = (n) => String(n).padStart(2, '0');
+      const yyyy = now.getFullYear();
+      const mm = pad(now.getMonth() + 1);
+      const dd = pad(now.getDate());
+      const hh = pad(now.getHours());
+      const mi = pad(now.getMinutes());
+      const ss = pad(now.getSeconds());
+      return {
+        id: `D-${yyyy}${mm}${dd}-${hh}${mi}${ss}`,
+        human: `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`
+      };
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return `${bytes} B`;
+      const units = ['KB', 'MB', 'GB'];
+      let size = bytes / 1024;
+      let index = 0;
+      while (size >= 1024 && index < units.length - 1) {
+        size /= 1024;
+        index += 1;
+      }
+      return `${size.toFixed(1)} ${units[index]}`;
+    }
+
+    function getLines(value) {
+      return value
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+    }
+
+    function gatherFormData() {
+      const now = new Date();
+      const generated = formatDateTime(now);
+
+      const requesterName = form.requesterName.value.trim();
+      const requesterEmail = form.requesterEmail.value.trim();
+      const department = form.department.value.trim();
+      const phone = form.phone.value.trim() || 'N/A';
+
+      const productType = form.productType.value.trim();
+      const objective = form.objective.value.trim();
+      const targetAudience = form.targetAudience.value.trim();
+      const languages = form.languages.value.trim();
+      const dimensions = form.dimensions.value.trim() || 'N/A';
+      const dateNeeded = form.dateNeeded.value || 'N/A';
+      const finalContent = form.finalContent.value.trim() || 'N/A';
+      const notes = form.notes.value.trim() || 'Aucune';
+
+      const links = getLines(form.exampleLinks.value);
+      const files = Array.from(form.images.files || []);
+      const cc = (form.ccEmail.value.trim() || CONFIG.defaultCc).trim();
+
+      const subject = `Demande design - ${productType} - ${requesterName} - ${generated.id}`;
+
+      const bodyLines = [
+        'Bonjour,',
+        '',
+        'Voici une nouvelle demande design :',
+        '',
+        '1) ID et génération',
+        `- ID de demande: ${generated.id}`,
+        `- Date/heure de génération: ${generated.human}`,
+        '',
+        '2) Informations demandeur',
+        `- Nom: ${requesterName}`,
+        `- Courriel: ${requesterEmail}`,
+        `- Direction: ${department}`,
+        `- Téléphone: ${phone}`,
+        '',
+        '3) Détails de la demande',
+        `- Type de produit: ${productType}`,
+        `- Objectif: ${objective}`,
+        `- Public cible: ${targetAudience}`,
+        `- Langues: ${languages}`,
+        `- Dimensions: ${dimensions}`,
+        `- Date de livraison souhaitée: ${dateNeeded}`,
+        `- Contenu final: ${finalContent}`,
+        `- Notes: ${notes}`,
+        '',
+        '4) Liens d’exemples'
+      ];
+
+      if (links.length === 0) {
+        bodyLines.push('- Aucun lien fourni');
+      } else {
+        links.forEach((link, idx) => bodyLines.push(`- ${idx + 1}. ${link}`));
+      }
+
+      bodyLines.push('', '5) Images');
+      bodyLines.push(`- Nombre d’images: ${files.length}`);
+      if (files.length === 0) {
+        bodyLines.push('- Aucune image fournie');
+      } else {
+        files.forEach((file) => {
+          bodyLines.push(`- ${file.name} (${formatFileSize(file.size)})`);
+        });
+      }
+
+      bodyLines.push('');
+      bodyLines.push('6) Mention');
+      bodyLines.push('- Veuillez joindre le PDF téléchargé.');
+      bodyLines.push('');
+      bodyLines.push('Merci.');
+
+      const body = bodyLines.join('\r\n');
+
+      return {
+        to: CONFIG.defaultTo,
+        cc,
+        subject,
+        body,
+        id: generated.id
+      };
+    }
+
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function updateButtonsState() {
+      const valid = form.checkValidity();
+      openEmailBtn.disabled = !valid;
+      copyEmailBtn.disabled = !valid;
+      if (!valid) {
+        statusEl.textContent = 'Veuillez remplir les champs requis avant de continuer.';
+      } else if (statusEl.textContent.startsWith('Veuillez remplir')) {
+        statusEl.textContent = '';
+      }
+    }
+
+    function validateBeforeAction() {
+      if (form.checkValidity()) {
+        return true;
+      }
+      form.reportValidity();
+      updateButtonsState();
+      return false;
+    }
+
+    openEmailBtn.addEventListener('click', async () => {
+      if (!validateBeforeAction()) return;
+
+      const data = gatherFormData();
+
+      if (data.body.length > CONFIG.maxBodyLength) {
+        statusEl.textContent = "Le courriel est trop long pour mailto. Utilisez 'Copier le résumé' puis collez-le dans Outlook.";
+        const copied = await copyToClipboard(`Sujet: ${data.subject}\r\n\r\n${data.body}`);
+        if (copied) {
+          statusEl.textContent += '\nLe résumé a été copié automatiquement dans le presse-papier.';
+        } else {
+          statusEl.textContent += '\nCopie automatique impossible. Utilisez le bouton de copie.';
+        }
+        return;
+      }
+
+      const query = [];
+      if (data.cc) query.push(`cc=${encodeURIComponent(data.cc)}`);
+      query.push(`subject=${encodeURIComponent(data.subject)}`);
+      query.push(`body=${encodeURIComponent(data.body)}`);
+      const mailtoUrl = `mailto:${encodeURIComponent(data.to)}?${query.join('&')}`;
+
+      window.location.href = mailtoUrl;
+      statusEl.textContent = `Courriel prêt à ouvrir pour la demande ${data.id}.`;
+    });
+
+    copyEmailBtn.addEventListener('click', async () => {
+      if (!validateBeforeAction()) return;
+      const data = gatherFormData();
+      const copied = await copyToClipboard(`Sujet: ${data.subject}\r\n\r\n${data.body}`);
+      statusEl.textContent = copied
+        ? 'Sujet et corps du courriel copiés dans le presse-papier.'
+        : 'Échec de copie automatique. Vérifiez les permissions du navigateur.';
+    });
+
+    downloadPdfBtn.addEventListener('click', () => {
+      if (!validateBeforeAction()) return;
+      const data = gatherFormData();
+      const popup = window.open('', '_blank', 'noopener');
+      if (!popup) {
+        statusEl.textContent = 'Impossible d’ouvrir la fenêtre d’impression (bloquée par le navigateur).';
+        return;
+      }
+      const pre = popup.document.createElement('pre');
+      pre.style.whiteSpace = 'pre-wrap';
+      pre.style.fontFamily = 'Arial, sans-serif';
+      pre.style.padding = '1rem';
+      pre.textContent = `Sujet: ${data.subject}\n\n${data.body}`;
+      popup.document.body.appendChild(pre);
+      popup.document.title = `${data.id} - Demande design`;
+      popup.focus();
+      popup.print();
+      statusEl.textContent = 'Utilisez la boîte d’impression pour enregistrer en PDF.';
+    });
+
+    form.addEventListener('input', updateButtonsState);
+    form.addEventListener('change', updateButtonsState);
+
+    updateButtonsState();
+  </script>
+</body>
+</html>
