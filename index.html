@@ -361,7 +361,7 @@
         `- Contenu final: ${finalContent}`,
         `- Notes: ${notes}`,
         '',
-        '4) Liens d’exemples'
+        "4) Liens d’exemples"
       ];
 
       if (links.length === 0) {
@@ -482,7 +482,7 @@
       const data = gatherFormData();
       const popup = window.open('', '_blank', 'noopener');
       if (!popup) {
-        statusEl.textContent = 'Impossible d’ouvrir la fenêtre d’impression (bloquée par le navigateur).';
+        statusEl.textContent = "Impossible d’ouvrir la fenêtre d’impression (bloquée par le navigateur).";
         return;
       }
       const pre = popup.document.createElement('pre');
@@ -494,7 +494,7 @@
       popup.document.title = `${data.id} - Demande design`;
       popup.focus();
       popup.print();
-      statusEl.textContent = 'Utilisez la boîte d’impression pour enregistrer en PDF.';
+      statusEl.textContent = "Utilisez la boîte d’impression pour enregistrer en PDF.";
     });
 
     form.addEventListener('input', updateButtonsState);
